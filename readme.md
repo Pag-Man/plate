@@ -7,14 +7,18 @@
 * Replace `favicon.ico` and `favicon.png`
 * Replace `screenshot.png`
 * Replace images in the `library/images` folder
-* Paste your styles and scripts into the `library/assets` folder
-* Change the style and script paths in the `plate_scripts_and_styles` function in `functions.php`
+* Paste your CSS and JS files into the `library/assets` folder
+* If you use Bower or NPM, paste the folders and manifest files into the theme root directory
+* Remove jQuery from your pasted JS files since we're using the jQuery provided by WordPress
+* Update the Bower or NPM paths in your CSS and JS files
+* Drop your theme folder into CodeKit
+* Change the CSS and JS paths in the `plate_scripts_and_styles` function in `functions.php`
 * Install the plugin `Disable Gutenberg` and activate it
 * Install the plugin `Advanced Custom Fields PRO` and activate it
-* Add your ACF field groups in the WordPress back end under `Custom Fields`
 * Change the menus in the `register_nav_menus` function in `functions.php`
 * Change the `header.php`
 * Change the `footer.php`
+* Add your ACF field groups in the WordPress back end under `Custom Fields`
 * Change the `page.php`
 * Change the `page-custom.php` and add more templates if necessary
 * Change the `404.php`
