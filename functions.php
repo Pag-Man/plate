@@ -22,12 +22,12 @@
 /* WordPress Admin functions (for customizing the WP Admin)
 (also not required so comment it out if you don't need it)
 */
-require_once( 'library/admin.php' );
+// require_once( 'library/admin.php' );
 
 // WordPress Customizer functions and enqueues
 // include( get_template_directory_uri() . '/library/customizer.php' );
 
-require_once( 'library/customizer.php' );
+// require_once( 'library/customizer.php' );
 
 
 
@@ -43,10 +43,10 @@ add_action( 'after_setup_theme', 'plate_lunch' );
 function plate_lunch() {
 
     // editor style
-    add_editor_style( get_stylesheet_directory_uri() . '/library/css/editor-style.css' );
+    // add_editor_style( get_stylesheet_directory_uri() . '/library/css/editor-style.css' );
 
     // let's get language support going, if you need it
-    load_theme_textdomain( 'platetheme', get_template_directory() . '/library/translation' );
+    // load_theme_textdomain( 'platetheme', get_template_directory() . '/library/translation' );
 
     // cleanup the <head>
     add_action( 'init', 'plate_head_cleanup' );
@@ -101,9 +101,9 @@ function plate_lunch() {
 /************* THUMBNAIL SIZE OPTIONS *************/
 
 // Thumbnail sizes
-add_image_size( 'plate-image-600', 600, 600, true );
-add_image_size( 'plate-image-300', 300, 300, true );
-add_image_size( 'plate-image-150', 150, 150, true );
+// add_image_size( 'plate-image-600', 600, 600, true );
+// add_image_size( 'plate-image-300', 300, 300, true );
+// add_image_size( 'plate-image-150', 150, 150, true );
 
 /*
 to add more sizes, simply copy a line from above
@@ -125,19 +125,19 @@ You can change the names and dimensions to whatever
 you like. Enjoy!
 */
 
-add_filter( 'image_size_names_choose', 'plate_custom_image_sizes' );
+// add_filter( 'image_size_names_choose', 'plate_custom_image_sizes' );
 
-function plate_custom_image_sizes( $sizes ) {
+// function plate_custom_image_sizes( $sizes ) {
 
-    return array_merge( $sizes, array(
+//     return array_merge( $sizes, array(
 
-        'plate-image-600' => __('600px by 600px', 'platetheme'),
-        'plate-image-300' => __('300px by 300px', 'platetheme'),
-        'plate-image-150' => __('150px by 150px', 'platetheme'),
+//         'plate-image-600' => __('600px by 600px', 'platetheme'),
+//         'plate-image-300' => __('300px by 300px', 'platetheme'),
+//         'plate-image-150' => __('150px by 150px', 'platetheme'),
 
-        ) 
-    );
-}
+//         ) 
+//     );
+// }
 
 /*
 The function above adds the ability to use the dropdown menu to select
@@ -152,18 +152,18 @@ new image size.
 // Sidebars & Widgetizes Areas
 function plate_register_sidebars() {
 
-	register_sidebar( array(
+    // register_sidebar( array(
 
-            'id' => 'sidebar1',
-            'name' => __( 'Sidebar 1', 'platetheme' ),
-            'description' => __( 'The first (primary) sidebar.', 'platetheme' ),
-            'before_widget' => '<div id="%1$s" class="widget %2$s">',
-            'after_widget' => '</div>',
-            'before_title' => '<h4 class="widgettitle">',
-            'after_title' => '</h4>',
+    //         'id' => 'sidebar1',
+    //         'name' => __( 'Sidebar 1', 'platetheme' ),
+    //         'description' => __( 'The first (primary) sidebar.', 'platetheme' ),
+    //         'before_widget' => '<div id="%1$s" class="widget %2$s">',
+    //         'after_widget' => '</div>',
+    //         'before_title' => '<h4 class="widgettitle">',
+    //         'after_title' => '</h4>',
 
-        )
-    );
+    //     )
+    // );
 
 	/*
 	to add more sidebars or widgetized areas, just copy
@@ -439,9 +439,6 @@ function plate_scripts_and_styles() {
         // register main stylesheet
         wp_enqueue_style( 'plate-stylesheet', get_theme_file_uri() . '/library/css/style.css', array(), '', 'all' );
 
-        // ie-only style sheet
-        wp_enqueue_style( 'plate-ie-only', get_theme_file_uri() . '/library/css/ie.css', array(), '' );
-
         // comment reply script for threaded comments
         if ( is_singular() AND comments_open() AND ( get_option('thread_comments') == 1 )) { wp_enqueue_script( 'comment-reply' ); }
 
@@ -450,11 +447,6 @@ function plate_scripts_and_styles() {
 
         // accessibility (a11y) scripts
         wp_enqueue_script( 'plate-a11y', get_theme_file_uri() . '/library/js/a11y.js', array( 'jquery' ), '', true );
-
-        $wp_styles->add_data( 'plate-ie-only', 'conditional', 'lt IE 9' ); // add conditional wrapper around ie stylesheet
-
-        // plate extra scripts. Uncomment to use. Or better yet, copy what you need to the main scripts folder or on the page(s) you need it
-        // wp_enqueue_script( 'plate-extra-js', get_theme_file_uri() . '/library/js/extras/extra-scripts.js', array( 'jquery' ), '', true );
 
     }
 }
@@ -614,46 +606,6 @@ function plate_theme_support() {
     // default thumb size
     set_post_thumbnail_size(125, 125, true);
 
-    // wp custom background (thx to @bransonwerner for update)
-    add_theme_support( 'custom-background', array(
-
-        'default-image' => '',    // background image default
-        'default-color' => '',    // background color default (dont add the #)
-        'wp-head-callback' => '_custom_background_cb',
-        'admin-head-callback' => '',
-        'admin-preview-callback' => '',
-
-        )
-    );
-
-    // Custom Header Image
-    add_theme_support( 'custom-header', array(
-
-            'default-image'      => get_template_directory_uri() . '/library/images/header-image.png',
-            'default-text-color' => '000',
-            'width'              => 1440,
-            'height'             => 220,
-            'flex-width'         => true,
-            'flex-height'        => true,
-            'header-text'        => true,
-            'uploads'            => true,
-            'wp-head-callback'   => 'plate_style_header',
-
-        ) 
-    );
-
-    // Custom Logo
-    add_theme_support( 'custom-logo', array(
-
-        'height'      => 100,
-        'width'       => 100,
-        'flex-height' => true,
-        'flex-width'  => true,
-        'header-text' => array( 'site-title', 'site-description' ),
-
-        ) 
-    );
-
     // rss thingy
     add_theme_support( 'automatic-feed-links' );
 
@@ -701,56 +653,25 @@ function plate_theme_support() {
     *
     */
 
-    add_theme_support( 'post-formats', array(
+    // add_theme_support( 'post-formats', array(
 
-        'aside',             // title less blurb
-        'gallery',           // gallery of images
-        'link',              // quick link to other site
-        'image',             // an image
-        'quote',             // a quick quote
-        'status',            // a Facebook like status update
-        'video',             // video
-        'audio',             // audio
-        'chat'               // chat transcript
+    //     'aside',             // title less blurb
+    //     'gallery',           // gallery of images
+    //     'link',              // quick link to other site
+    //     'image',             // an image
+    //     'quote',             // a quick quote
+    //     'status',            // a Facebook like status update
+    //     'video',             // video
+    //     'audio',             // audio
+    //     'chat'               // chat transcript
 
-        )
-    );
+    //     )
+    // );
 
     // Gutenberg support: https://www.billerickson.net/getting-your-theme-ready-for-gutenberg/
     // https://wordpress.org/gutenberg/handbook/extensibility/theme-support/
     // .alignwide styles added to _768up
     add_theme_support( 'align-wide' );
-
-    add_theme_support( 'editor-color-palette',
-        array(
-            'name' => 'studio bio blue',
-            'color' => '#0056ac',
-        ),
-        array(
-            'name' => 'studio bio light blue',
-            'color' => '#99bbde',
-        ),
-        array(
-            'name' => 'studio bio midnight',
-            'color' => '#001c3a',
-        ),
-        array(
-            'name' => 'studio bio purple',
-            'color' => '#cc0099',
-        ),
-        array(
-            'name' => 'studio bio red',
-            'color' => '#f23e2f',
-        ),
-        array(
-            'name' => 'grey 70',
-            'color' => '#444444',
-        ),
-        array(
-            'name' => 'grey 20',
-            'color' => '#cccccc',
-        )
-    );
 
     // Adds default Gutenberg styles to custom blocks
     // Delete/comment out if you are adding your own block styles
@@ -1021,10 +942,6 @@ function plate_body_class( $classes ) {
 
     }
 
-    if ( is_page_template('single-full.php') ) {
-        $classes[] = 'single-full';
-    }
-
     return $classes;
 
 }
@@ -1143,47 +1060,31 @@ endif;
  * 
  */
 
-function plate_add_dashboard_widgets() {
+// function plate_add_dashboard_widgets() {
 
-    // Call the built-in dashboard widget function with our callback
-    wp_add_dashboard_widget(
-        'plate_dashboard_widget', // Widget slug. Also the HTML id for styling in admin.scss.
-        __( 'Welcome to Plate!', 'platetheme' ), // Title.
-        'plate_dashboard_widget_init' // Display function (below)
-    );
-}
-add_action( 'wp_dashboard_setup', 'plate_add_dashboard_widgets' );
+//     // Call the built-in dashboard widget function with our callback
+//     wp_add_dashboard_widget(
+//         'plate_dashboard_widget', // Widget slug. Also the HTML id for styling in admin.scss.
+//         __( 'Welcome to Plate!', 'platetheme' ), // Title.
+//         'plate_dashboard_widget_init' // Display function (below)
+//     );
+// }
+// add_action( 'wp_dashboard_setup', 'plate_add_dashboard_widgets' );
 
-// Create the function to output the contents of our Dashboard Widget.
-function plate_dashboard_widget_init() {
+// // Create the function to output the contents of our Dashboard Widget.
+// function plate_dashboard_widget_init() {
 
-    // helper vars for links and images and stuffs.
-    $url = get_admin_url();
-    $img = get_theme_file_uri() . '/library/images/logo.svg';
+//     // helper vars for links and images and stuffs.
+//     $url = get_admin_url();
+//     $img = get_theme_file_uri() . '/library/images/logo.svg';
 
-    echo '<div class="dashboard-image"><img src=' . $img . '" width="96" height="96" /></div>';
-    echo '<h3>You\'ve arrived at the WordPress Dashboard aka the \'Site Admin\' or \'WordPress Admin\' or simply the \'Admin\'.</h3>'; 
-    echo '<p><strong>Thank you for using the <a href="https://github.com/joshuaiz/plate" target="_blank">Plate</a> theme by <a href="https://studio.bio/" target="_blank">studio.bio</a>!</strong></p>'; 
-    echo '<p>You can add your own message(s) or HTML here. Edit the <code>plate_dashboard_widget_init()</code> function in <code>functions.php</code> at line 1225. Styles are in <code>admin.scss</code>. Or if you don\'t want or need this, just delete the function. Have it your way.</p>';
-    echo '<p>This is a great place for site instructions, links to help or resources, and to add your contact info for clients.</p>';
-    echo '<p>Make sure to remind them about the <code>Screen Options</code> tab on the top right. Often clients do not know about that and that they can show or hide or rearrange these Dashboard Widgets or show/hide boxes on any edit screen.</p>';
+//     echo '<div class="dashboard-image"><img src=' . $img . '" width="96" height="96" /></div>';
+//     echo '<h3>You\'ve arrived at the WordPress Dashboard aka the \'Site Admin\' or \'WordPress Admin\' or simply the \'Admin\'.</h3>'; 
+//     echo '<p><strong>Thank you for using the <a href="https://github.com/joshuaiz/plate" target="_blank">Plate</a> theme by <a href="https://studio.bio/" target="_blank">studio.bio</a>!</strong></p>'; 
+//     echo '<p>You can add your own message(s) or HTML here. Edit the <code>plate_dashboard_widget_init()</code> function in <code>functions.php</code> at line 1225. Styles are in <code>admin.scss</code>. Or if you don\'t want or need this, just delete the function. Have it your way.</p>';
+//     echo '<p>This is a great place for site instructions, links to help or resources, and to add your contact info for clients.</p>';
+//     echo '<p>Make sure to remind them about the <code>Screen Options</code> tab on the top right. Often clients do not know about that and that they can show or hide or rearrange these Dashboard Widgets or show/hide boxes on any edit screen.</p>';
     
-}
-
-
-// Live Reload for Grunt during development
-// If your site is running locally it will load the livereload js file into the footer. This makes it possible for the browser to reload after a change has been made. 
-if ( in_array($_SERVER['REMOTE_ADDR'], array('127.0.0.1', '::1')) ) {
-
-    function livereload_script() {
-
-    	wp_register_script('livereload', 'http://localhost:35729/livereload.js?snipver=1', null, false, true);
-    	wp_enqueue_script('livereload');
-
-    }
-  
-    add_action( 'wp_enqueue_scripts', 'livereload_script' );
-
-}
+// }
 
 ?>
