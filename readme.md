@@ -18,3 +18,11 @@
 * Change the `page.php`
 * Change the `page-custom.php` and add more templates if necessary
 * Change the `404.php`
+
+## Recommended plugins
+* [Autoptimize](https://wordpress.org/plugins/autoptimize/)
+* [Optimize Database after Deleting Revisions](https://wordpress.org/plugins/rvg-optimize-database/)
+* [Search & Replace](https://wordpress.org/plugins/search-and-replace/)
+* [WP Super Cache](https://wordpress.org/plugins/wp-super-cache/)
+* [Wordfence Security – Firewall & Malware Scan](https://wordpress.org/plugins/wordfence/)
+* [Yoast SEO](https://wordpress.org/plugins/wordpress-seo/)
