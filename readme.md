@@ -2,6 +2,7 @@
 
 ## How to use Plate?
 * Download or clone the repository into your `wp-content/themes` folder
+* Rename the theme folder
 * Change `Theme Name` and `Text Domain` in `style.css`
 * Activate the theme in the WordPress back end under `Appearance > Themes`
 * Replace `favicon.ico` and `favicon.png`
