@@ -4,7 +4,6 @@
 <!--[if (IE 7)&!(IEMobile)]><html <?php language_attributes(); ?> class="no-js lt-ie9 lt-ie8"><![endif]-->
 <!--[if (IE 8)&!(IEMobile)]><html <?php language_attributes(); ?> class="no-js lt-ie9"><![endif]-->
 <!--[if gt IE 8]><!--> <html <?php html_schema(); ?> <?php language_attributes(); ?> class="no-js"><!--<![endif]-->
-
 	<head>
 
         <?php /**
@@ -49,7 +48,6 @@
         <?php // end of wordpress head ?>
 
     </head>
-
 	<body <?php body_class(); ?> itemscope itemtype="https://schema.org/WebPage">
 
         <?php // remove grid classes below if you aren't using CSS Grid (but you should) ?>

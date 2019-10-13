@@ -35,5 +35,4 @@
 		<?php wp_footer(); ?>
 
 	</body>
-
-</html> <!-- This is the end. My only friend. -->
+</html>
