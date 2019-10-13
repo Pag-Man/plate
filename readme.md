@@ -27,7 +27,9 @@
 ## Recommended plugins
 * [Autoptimize](https://wordpress.org/plugins/autoptimize/)
 * [Optimize Database after Deleting Revisions](https://wordpress.org/plugins/rvg-optimize-database/)
+* [Regenerate Thumbnails](https://wordpress.org/plugins/regenerate-thumbnails/)
 * [Search & Replace](https://wordpress.org/plugins/search-and-replace/)
 * [WP Super Cache](https://wordpress.org/plugins/wp-super-cache/)
 * [Wordfence Security – Firewall & Malware Scan](https://wordpress.org/plugins/wordfence/)
 * [Yoast SEO](https://wordpress.org/plugins/wordpress-seo/)
+* [ACF Content Analysis for Yoast SEO](https://wordpress.org/plugins/acf-content-analysis-for-yoast-seo/)
