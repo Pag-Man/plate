@@ -29,6 +29,7 @@
 * [Optimize Database after Deleting Revisions](https://wordpress.org/plugins/rvg-optimize-database/)
 * [Regenerate Thumbnails](https://wordpress.org/plugins/regenerate-thumbnails/)
 * [Search & Replace](https://wordpress.org/plugins/search-and-replace/)
+* [WP Pusher](https://wppusher.com/)
 * [WP Super Cache](https://wordpress.org/plugins/wp-super-cache/)
 * [Wordfence Security – Firewall & Malware Scan](https://wordpress.org/plugins/wordfence/)
 * [Yoast SEO](https://wordpress.org/plugins/wordpress-seo/)
