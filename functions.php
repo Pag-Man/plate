@@ -43,7 +43,8 @@ add_action( 'after_setup_theme', 'plate_lunch' );
 function plate_lunch() {
 
     // editor style
-    // add_editor_style( get_stylesheet_directory_uri() . '/library/css/editor-style.css' );
+    add_editor_style( get_stylesheet_directory_uri() . '/library/css/editor-style.css' );
+    // add_editor_style( get_stylesheet_directory_uri() . '/library/assets/css/editor.css' );
 
     // let's get language support going, if you need it
     // load_theme_textdomain( 'platetheme', get_template_directory() . '/library/translation' );
@@ -446,7 +447,7 @@ function plate_scripts_and_styles() {
         wp_enqueue_script( 'plate-js', get_theme_file_uri() . '/library/js/scripts.js', array( 'jquery' ), '', true );
 
         // accessibility (a11y) scripts
-        wp_enqueue_script( 'plate-a11y', get_theme_file_uri() . '/library/js/a11y.js', array( 'jquery' ), '', true );
+        // wp_enqueue_script( 'plate-a11y', get_theme_file_uri() . '/library/js/a11y.js', array( 'jquery' ), '', true );
 
     }
 }
@@ -474,6 +475,7 @@ add_action( 'enqueue_block_editor_assets', 'plate_block_editor_styles' );
 function plate_block_editor_styles() {
     
     wp_enqueue_style( 'plate-block-editor-styles', get_theme_file_uri( '/library/css/editor.css' ), false, '1.0', 'all' );
+    // wp_enqueue_style( 'plate-block-editor-styles-custom', get_theme_file_uri( '/library/assets/css/editor-gutenberg.css' ), false, '1.0', 'all' );
 
 }
 
@@ -610,13 +612,10 @@ function plate_theme_support() {
     add_theme_support( 'automatic-feed-links' );
 
     // To add another menu, uncomment the second line and change it to whatever you want. You can have even more menus.
-    register_nav_menus( array(
-
-        'main-nav' => __( 'The Main Menu', 'platetheme' ),   // main nav in header
-        // 'footer-links' => __( 'Footer Links', 'platetheme' ) // secondary nav in footer. Uncomment to use or edit.
-
-        )
-    );
+    register_nav_menus(array(
+        'main-nav' => __('The Main Menu', 'platetheme'),   // main nav in header
+        // 'footer-links' => __('Footer Links', 'platetheme') // secondary nav in footer
+    ));
 
     // Title tag. Note: this still isn't working with Yoast SEO
     add_theme_support( 'title-tag' );
@@ -678,7 +677,7 @@ function plate_theme_support() {
     add_theme_support( 'wp-block-styles' );
 
     // To limit the Gutenberg editor to your theme colors, uncomment this
-    // add_theme_support( 'disable-custom-colors' );
+    add_theme_support( 'disable-custom-colors' );
 
 } /* end plate theme support */
 
@@ -1085,6 +1084,76 @@ endif;
 //     echo '<p>This is a great place for site instructions, links to help or resources, and to add your contact info for clients.</p>';
 //     echo '<p>Make sure to remind them about the <code>Screen Options</code> tab on the top right. Often clients do not know about that and that they can show or hide or rearrange these Dashboard Widgets or show/hide boxes on any edit screen.</p>';
     
+// }
+
+
+// Enable SVGs in media
+function plate_mime_types($mimes) {
+    $mimes['svg'] = 'image/svg+xml';
+
+    return $mimes;
+}
+add_filter('upload_mimes', 'plate_mime_types');
+
+
+// Disable srcset restrictions
+function plate_remove_max_srcset_image_width($max_width) {
+    return false;
+}
+add_filter('max_srcset_image_width', 'plate_remove_max_srcset_image_width');
+
+
+// Add Gutenberg/ACF block category
+function plate_block_categories($categories) {
+    return array_merge(
+        $categories,
+        array(
+            array(
+                'slug' => 'custom',
+                'title' => __('Custom Blocks', 'platetheme'),
+            ),
+        )
+    );
+}
+add_filter('block_categories', 'plate_block_categories', 10, 2);
+
+
+// Add Gutenberg/ACF blocks
+if (function_exists('acf_register_block_type')) {
+    function plate_acf_block_types() {
+        acf_register_block_type(array(
+            'name'              => 'example',
+            'title'             => __('Example'),
+            'category'          => 'custom',
+            'align'             => 'full',
+            'render_template'   => 'blocks/example.php',
+            'supports'          => array(
+                'align'             => array('full'),
+                'anchor'            => true,
+            ),
+        ));
+
+        // ...
+    }
+    add_action('acf/init', 'plate_acf_block_types');
+}
+
+
+// Add ACF options pages
+// if (function_exists('acf_add_options_page')) {
+//     acf_add_options_page(array(
+//         'page_title'    => 'Theme Settings',
+//         'menu_title'    => 'Theme Settings',
+//         'menu_slug'     => 'theme-settings',
+//         'capability'    => 'edit_posts',
+//         'redirect'      => true
+//     ));
+
+//     acf_add_options_sub_page(array(
+//         'page_title'    => 'Footer',
+//         'menu_title'    => 'Footer',
+//         'parent_slug'   => 'theme-settings',
+//     ));
 // }
 
 ?>
