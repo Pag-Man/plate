@@ -51,6 +51,7 @@ RewriteRule . /index.php [L]
 * Change `Common Settings` to `Post name` under `Settings > Permalinks`
 
 ## Set up WP Pusher
+* Add `define('DISALLOW_FILE_EDIT', true);` to your `wp-config.php`
 * Create a new remote repository on GitHub or BitBucket
 * Connect your local repository to the remote repository with `git remote set-url origin <URL>`
 * Commit and push your changes to the remote repository
