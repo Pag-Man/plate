@@ -32,9 +32,6 @@
         <!-- Apple Touch Icon -->
         <link rel="apple-touch-icon" href="<?php echo get_theme_file_uri(); ?>/library/images/apple-touch-icon.png">
 
-        <!-- Safari Pinned Tab Icon -->
-        <link rel="mask-icon" href="<?php echo get_theme_file_uri(); ?>/library/images/icon.svg" color="#0088cc">
-
         <?php // updated pingback. Thanks @HardeepAsrani https://github.com/HardeepAsrani ?>
         <?php if ( is_singular() && pings_open( get_queried_object() ) ) : ?>
             <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
